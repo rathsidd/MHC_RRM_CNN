@@ -30,8 +30,8 @@ def get_matching_data(peplearn, second, allele='HLA', peptide_col='peptide', mhc
 
 def generate_tts_datasets(data_loc, arr_cols=None, names=None):
     '''
-    Given the location of a dataset splits the dataset into train
-    test and split files based on whether each peptide is train test or split
+    Given the location of a dataset, splits the dataset into train and
+    test files based on whether each peptide is train test or split
     in the peplearn dataset. Saves the split dataset to csvs.
 
     Arguments -------
