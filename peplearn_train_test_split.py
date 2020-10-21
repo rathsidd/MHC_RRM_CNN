@@ -1,4 +1,4 @@
-import pandas as pd
+from pandas import Series
 from utils import load_data
 from iedb import mhc_datasets
 
@@ -17,7 +17,7 @@ def get_matching_data(mhc, convolved):
         seq = (convolved['peptide'] == mhc[0][index])
         allele = (convolved['mhc'] == mhc[2][index])
         seqs += list(convolved[seq & allele].index)
-    return pd.Series(seqs)
+    return Series(seqs)
 
 def generate_tts_datasets(data_loc, arr_cols=None, names=None):
     '''
