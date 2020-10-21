@@ -2,7 +2,11 @@ from pandas import Series
 from utils import load_data
 from iedb import mhc_datasets
 
-def get_matching_data(peplearn, second, allele='HLA', peptide_col='peptide', mhc_col='mhc'):
+def get_matching_data(peplearn,
+                      second,
+                      allele='HLA',
+                      peptide_col='peptide',
+                      mhc_col='mhc'):
     '''
     Given a dataset with peptides and alleles from the peplearn database, and
     a second dataset containing peptides and alleles, returns a Series with
