@@ -2,21 +2,30 @@ from pandas import Series
 from utils import load_data
 from iedb import mhc_datasets
 
-def get_matching_data(mhc, convolved):
+def get_matching_data(peplearn, second, allele='HLA', peptide_col='peptide', mhc_col='mhc'):
     '''
-    Given a dataset of peptides and a dataset of peptides convolved
-    onto alleles, select the peptides in the second dataset which are
-    present in the first.
+    Given a dataset with peptides and alleles from the peplearn database, and
+    a second dataset containing peptides and alleles, returns a Series with
+    the indexes of all rows in the seconds dataset which contain matching
+    alleles and peptides to the peplearn dataset.
+
+    Arguments -------
+    peplearn: dataset from peplearn database
+    second: other dataset of alleles and peptides
+    peptide_col: optional, name of column in second with peptides defaults to
+    'peptide'
+    mhc_col: optional, name of column in second with alleles defaults to
+    'mhc'
     '''
     indices = []
-    for index, allele in enumerate(mhc[2]):
+    for index, allele in enumerate(peplearn[2]):
         if allele.split('-')[0] == 'HLA':
             indices.append(index)
     seqs = []
     for index in indices:
-        seq = (convolved['peptide'] == mhc[0][index])
-        allele = (convolved['mhc'] == mhc[2][index])
-        seqs += list(convolved[seq & allele].index)
+        seq = (second[peptide_col] == peplearn[0][index])
+        allele = (second[mhc_col] == peplearn[2][index])
+        seqs += list(second[seq & allele].index)
     return Series(seqs)
 
 def generate_tts_datasets(data_loc, arr_cols=None, names=None):
