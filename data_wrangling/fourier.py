@@ -45,8 +45,4 @@ def fourierOf(eiipSeq):
     phi = np.reshape(np.arctan(Xim/Xre), [1, int(N/2)])
     # Scaling
     scaled = 100*(R-min(min(R)))/(max(max(R))-min(min(R)))
-    plt.plot(np.reshape(n/N, [int(N/2), ]), np.reshape(scaled, [int(N/2), ]))
-    plt.axis([0, 0.5, 0, 100])
-    # plt.title("FREQ RRM 1")
-    plt.show()
     return n, N, Xre, Xim, R, phi, m, x, scaled
