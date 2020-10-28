@@ -1,6 +1,6 @@
 from pandas import Series
 from utils import load_data
-from iedb import mhc_datasets
+from peplearn_code.iedb import mhc_datasets
 
 def get_matching_data(peplearn,
                       second,
